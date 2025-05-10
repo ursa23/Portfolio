@@ -43,6 +43,7 @@ try {
     // Expéditeur et destinataire
     $mail->setFrom($_ENV['SMTP_SENDER'], $name);
     $mail->addAddress($_ENV['SMTP_RECIPIENT']);
+    $mail->addCC($_ENV['SMTP_RECIPIENT_CC']); 
 
     // Contenu
     $mail->isHTML(false);
