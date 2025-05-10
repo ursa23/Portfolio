@@ -4,22 +4,31 @@ on:
   push:
     branches:
       - main
+
 jobs:
-  ssh-deploy:
+  ftp-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-          
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4' # ou la version requise par ton projet
+
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader
+
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ./
-          local-dir: ./
+          server-dir: ./         # ou public_html/ selon ton hébergeur
+          local-dir: ./          # assure-toi que composer install a généré le bon dossier ici
           protocol: ftp
           port: 21
           dangerous-clean-slate: true
