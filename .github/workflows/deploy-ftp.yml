@@ -19,6 +19,7 @@ jobs:
           php-version: '7.4' # ou la version requise par ton projet
 
       - name: Install Composer dependencies
+        working-directory: ./
         run: composer install --no-dev --optimize-autoloader
 
       - name: FTP Deploy
