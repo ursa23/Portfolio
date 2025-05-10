@@ -27,6 +27,10 @@ $message = strip_tags($_POST['message']);
 $mail = new PHPMailer(true);
 
 try {
+    // SMTP configuration
+    $mail->CharSet = 'UTF-8'; // 🔸 encodage UTF-8
+    $mail->Encoding = 'base64'; // 🔸 encodage du corps de l'email
+
     // Paramètres SMTP de Brevo via .env
     $mail->isSMTP();
     $mail->Host       = $_ENV['SMTP_HOST'];
