@@ -32,6 +32,6 @@ jobs:
           local-dir: ./          # assure-toi que composer install a généré le bon dossier ici
           protocol: ftp
           port: 21
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
           exclude: |
             .env
