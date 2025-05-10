@@ -37,7 +37,7 @@ try {
     $mail->Port       = 587;
 
     // Expéditeur et destinataire
-    $mail->setFrom($email, $name);
+    $mail->setFrom($_ENV['SMTP_USERNAME'], $name);
     $mail->addAddress($_ENV['SMTP_RECIPIENT']);
 
     // Contenu
